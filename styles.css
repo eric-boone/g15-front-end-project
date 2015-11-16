@@ -1,0 +1,17 @@
+/*body {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: /images/9.jpg;
+}*/
+canvas {
+  height: 100%;
+  width: 100%;
+  outline: 1px solid black;
+  /*background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-image: images/19.jpg;*/
+}
