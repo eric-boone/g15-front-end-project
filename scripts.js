@@ -3,15 +3,37 @@ var stage;
 function init() {
   stage = new createjs.Stage("demoCanvas");
 
-  // var grass = new createjs.Bitmap("images/19.jpeg");
-
-  // grass.image.onload = function() {
-  //   stage.update();
-  // }
-  // stage.addChild(grass);
-
   demoCanvas.width = window.innerWidth;
   demoCanvas.height = window.innerHeight;
+
+  var grass = new createjs.Bitmap("images/19.jpeg").setTransform(
+    0, // x=0, The horizontal translation (x position) in pixels
+    0, //y=0, The vertical translation (y position) in pixels
+    0.5, //scaleX=1, The horizontal scale, as a percentage of 1
+    0.5, //scaleY=1, the vertical scale, as a percentage of 1
+    0, //rotation=0, The rotation, in degrees
+    0, //skewX=0, The horizontal skew factor
+    0, //skewY=0, The vertical skew factor
+    demoCanvas.width, //regX=0, The horizontal registration point in pixels
+    demoCanvas.height); //regY=0, The vertical registration point in pixels
+
+    console.log(grass.x);
+
+  grass.image.onload = function() {
+    stage.update();
+  }
+  stage.addChild(grass);
+
+  window.addEventListener('resize', function(){
+    console.log('hello');
+    demoCanvas.width = window.innerWidth;
+    demoCanvas.height = window.innerHeight;
+
+      stage.update();
+
+
+  }, true);
+
 
   ///Text only below here
 
