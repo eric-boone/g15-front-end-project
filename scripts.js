@@ -1,32 +1,31 @@
-(function(){
-  // create a wrapper around native canvas element (with id="c")
-  var canvas = new fabric.StaticCanvas('c');
+var stage;
 
-  canvas.setBackgroundImage('images/19.jpeg', canvas.renderAll.bind(canvas), {
-    backgroundImageOpacity: 1,
-    backgroundImageStretch: false
-  });
+function init() {
+  stage = new createjs.Stage("demoCanvas");
 
-  window.addEventListener('resize', resizeCanvas, false);
-
-  function resizeCanvas() {
-    canvas.setHeight(window.innerHeight);
-    canvas.setWidth(window.innerWidth);
-    canvas.renderAll();
+  var grass = new createjs.Bitmap("https://c1.staticflickr.com/3/2667/3914436800_db572b68e0_b.jpg");
+  grass.image.onload = function() {
+    stage.update();
   }
+  stage.addChild(grass);
 
-  resizeCanvas();
+  var txt = new createjs.Text("", "18px Arial", "#111");
 
-  var text = new fabric.Text('Hello World!', {
-    fill: 'rgb(120,120,0)',
-    left: 0,
-    top: 0,
-    fontFamily: 'Helvetica',
-    fontSize: 40,
-    shadow: 'black 2px 2px 2px'
-  });
-  canvas.add(text);
+  txt.text = "This wrapped multi-line text is rendered using the Text Object.\n\n";
 
-  // canvas.centerObject(text);
+  txt.text += "Text is fairly limited in canvas and EaselJS. It's fine for simple labels, titles, and HUD elements. You are limited to a single style per Text object, and the text is not selectable, editable, or accessible.\n\n";
 
-})();
+  txt.text += "For more complicated text, you can use DOMElement to include HTML text in your display list. It's also worth taking a look at BitmapText for visually rich text for games or similar scenarios.\n\n";
+
+  txt.text += "Text line heights & bounds are approximated, but accurate enough for most uses (for example, the grey background on this text).";
+
+  txt.lineWidth = 550;
+	txt.lineHeight = 22;
+	txt.textBaseline = "top";
+	txt.textAlign = "left";
+	txt.y = 50;
+	txt.x = (stage.canvas.width - 550) / 2;
+
+  stage.addChild(txt);
+
+}
