@@ -3,11 +3,17 @@ var stage;
 function init() {
   stage = new createjs.Stage("demoCanvas");
 
-  var grass = new createjs.Bitmap("https://c1.staticflickr.com/3/2667/3914436800_db572b68e0_b.jpg");
-  grass.image.onload = function() {
-    stage.update();
-  }
-  stage.addChild(grass);
+  // var grass = new createjs.Bitmap("images/19.jpeg");
+
+  // grass.image.onload = function() {
+  //   stage.update();
+  // }
+  // stage.addChild(grass);
+
+  demoCanvas.width = window.innerWidth;
+  demoCanvas.height = window.innerHeight;
+
+  ///Text only below here
 
   var txt = new createjs.Text("", "18px Arial", "#111");
 
@@ -27,5 +33,7 @@ function init() {
 	txt.x = (stage.canvas.width - 550) / 2;
 
   stage.addChild(txt);
+
+  stage.update();
 
 }
