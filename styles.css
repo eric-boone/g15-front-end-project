@@ -11,5 +11,11 @@ a.pinit {
 }
 button.reload {
   position: fixed;
-  left: 50px;
+  left:25px;
+  top: 25px;
+}
+button.download {
+  position: fixed;
+  left: 100px;
+  top: 25px;
 }

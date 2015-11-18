@@ -71,13 +71,17 @@ function init() {
       var scale = scaleFactor();
       grass.setTransform(0, 0, scale, scale);
       stage.update();
+
+      canvasToJPEG();
     }
 
   //text stuff
 
   var txt = new createjs.Text("", "", "");
 
-  txt.text += "Text is fairly limited in canvas and EaselJS. It's fine for simple labels, titles, and HUD elements. You are limited to a single style per Text object, and the text is not selectable, editable, or accessible.\n\n";
+  // txt.text += ranTitle;
+
+  txt.text += "Text is fairly limited in canvas and EaselJS. It's fine for simple labels, titles, and HUD elements. You are limited to a single style per Text object, and the text is not selectable, editable, or accessible.";
 
   txt.font = "40px Roboto Condensed";
   txt.color = "#FBFFC9"
