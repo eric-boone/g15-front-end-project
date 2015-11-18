@@ -31,7 +31,7 @@ function init() {
     console.log(scaleFactor());
 
     context.translate(canvas.width/2, canvas.height/2);
-    context.scale(scaleFactor, scaleFactor);
+    context.scale(scaleFactor(), scaleFactor());
     context.translate((-bgImage.width/2),(-bgImage.height)/2);
 
 
