@@ -6,3 +6,10 @@ body, html {
 canvas {
   outline: 1px black solid;
 }
+a.pinit {
+  position: fixed;
+}
+button.reload {
+  position: fixed;
+  left: 50px;
+}
