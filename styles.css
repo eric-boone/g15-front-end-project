@@ -6,15 +6,12 @@ body, html {
 canvas {
   outline: 1px black solid;
 }
-a.pinit {
-  position: fixed;
-}
-button.reload {
+.reload {
   position: fixed;
   left:25px;
   top: 25px;
 }
-button.download {
+.lockText {
   position: fixed;
   left: 100px;
   top: 25px;
