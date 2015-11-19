@@ -15,6 +15,16 @@ $(document).ready(function(){
     getRandomImage();
   })
 
+  $('#save').click(function(){
+    var canvas = document.getElementById("demoCanvas"), ctx = canvas.getContext("2d");
+    canvas.toBlob(function(blob) {
+        saveAs(blob, "ILoveShowerThoughtsandErthPorns.png");
+    });
+    return false;
+  })
+
+
+
 })
 
 var currentRandomThought = "";
@@ -69,6 +79,8 @@ function init() {
 function addBackgroundToCanvas(url){
   var grass = new createjs.Bitmap(url);
   var imageSize = grass.getBounds();
+
+  grass.image.crossOrigin = "";
 
   grass.image.onload = function() {
     var widthRatio = demoCanvas.width / grass.image.width;
