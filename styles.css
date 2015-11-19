@@ -11,8 +11,13 @@ canvas {
   left:25px;
   top: 25px;
 }
-.lockText {
+.newText {
   position: fixed;
   left: 100px;
+  top: 25px;
+}
+.newBackground {
+  position: fixed;
+  left: 190px;
   top: 25px;
 }

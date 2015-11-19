@@ -1,16 +1,53 @@
 $(document).ready(function(){
   $('#reload').click(function(){
-    window.location.reload();
+    randomThought = true;
+    getRandomImage();
   })
 
-  $.get("https://www.reddit.com/r/Showerthoughts.json", function(data){
-      var ran = Math.floor(Math.random()*28);
-      addTextToCanvas(data.data.children[ran].data.title);
+  $('#newText').click(function(){
+    stage.removeChildAt(stage.children.length-1);
+    randomThought = true;
+    getRandomThought();
+  })
+
+  $('#newBackground').click(function(){
+    randomThought = false;
+    getRandomImage();
   })
 
 })
 
-////easeljs canvas magic
+var currentRandomThought = "";
+var randomThought = true;
+getRandomImage();
+
+// /r/ShowerThoughts
+function getRandomThought(){
+  $.get("https://www.reddit.com/r/Showerthoughts.json", function(data){
+      var ran = Math.floor(Math.random()*28);
+      currentRandomThought = data.data.children[ran].data.title;
+      addTextToCanvas(data.data.children[ran].data.title);
+  })
+}
+
+// images for background
+function getRandomImage(){
+  $.get("https://www.reddit.com/user/theyangmaster/m/earthporns.json", function(data){
+    var validImages = [];
+
+    // checks for file endings for valid images
+    for(var i = 0; i < data.data.children.length; i++) {
+      if(data.data.children[i].data.url.match(/\.(jpg|jpeg|png|gif|bmp|tiff)$/i)) {
+        validImages.push(data.data.children[i].data.url);
+      }
+    }
+    // chooses a random valid image
+    var ran = Math.floor(Math.random()*validImages.length);
+    addBackgroundToCanvas(validImages[ran]);
+  })
+}
+
+////easeljs canvas stuff
 var stage;
 
 function init() {
@@ -21,38 +58,42 @@ function init() {
   demoCanvas.height = window.innerHeight;
 
   window.addEventListener('resize', function(){
-    console.log('hello');
     demoCanvas.width = window.innerWidth;
     demoCanvas.height = window.innerHeight;
     stage.update();
   }, true);
 
-    // var grass = new createjs.Bitmap("https://source.unsplash.com/random")
-    var grass = new createjs.Bitmap("images/19.jpeg")
-
-      var imageSize = grass.getBounds();
-
-    grass.image.onload = function() {
-      var widthRatio = demoCanvas.width / grass.image.width;
-      var heightRatio = demoCanvas.height / grass.image.height;
-      var scaleFactor = function(){
-        if (widthRatio >= heightRatio){
-          return widthRatio;
-        } else {
-          return heightRatio;
-        }
-      }
-      var scale = scaleFactor();
-      grass.setTransform(0, 0, scale, scale);
-      stage.update();
-
-      canvasToJPEG();
-    }
-
-  stage.addChild(grass);
-  stage.update();
 }
 
+// background image for canvas with easelJS
+function addBackgroundToCanvas(url){
+  var grass = new createjs.Bitmap(url);
+  var imageSize = grass.getBounds();
+
+  grass.image.onload = function() {
+    var widthRatio = demoCanvas.width / grass.image.width;
+    var heightRatio = demoCanvas.height / grass.image.height;
+    var scaleFactor = function(){
+      if (widthRatio >= heightRatio){
+        return widthRatio;
+      } else {
+        return heightRatio;
+      }
+    }
+    var scale = scaleFactor();
+    grass.setTransform(0, 0, scale, scale);
+    stage.addChild(grass);
+    stage.update();
+    // calling the below now so that text apears on top of image
+    if(randomThought){
+      getRandomThought();
+    } else {
+      addTextToCanvas(currentRandomThought);
+    }
+  }
+}
+
+// text for canvas with easelJS
 function addTextToCanvas(text){
   var txt = new createjs.Text("", "", "");
 
@@ -70,4 +111,5 @@ function addTextToCanvas(text){
 
   stage.addChild(txt);
   stage.update();
+
 }
