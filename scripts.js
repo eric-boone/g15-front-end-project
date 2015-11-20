@@ -23,8 +23,6 @@ $(document).ready(function(){
     return false;
   })
 
-
-
 })
 
 var currentRandomThought = "";
@@ -37,7 +35,6 @@ function getRandomThought(){
       var ran = Math.floor(Math.random()*28);
       currentRandomThought = data.data.children[ran].data.title;
       addTextToCanvas(data.data.children[ran].data.title);
-      // addTextToCanvas(currentRandomThought);
 
   })
 }
