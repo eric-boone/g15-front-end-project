@@ -12,18 +12,28 @@
     <script src="scripts.js"></script>
   </head>
   <body onload="init();">
-    <button id="reload" class="reload" name="button" type="button">Reload</button>
+
+      <nav class="dropdownmenu">
+        <ul>
+          <li><a id="reload" class="reload" name="button" href="">Reload</a></li>
+          <li><a id="newText" class="newText" name="button" href="">New Thought</a></li>
+          <li><a id="newBackground" class="newBackground" name="button" href="">New Background</a></li>
+          <li><a id="save" class="save" name="save" href="">Save</a></li>
+          <li><a id="postToImgur" class="postToImgur" name="postToImgur" href="">Post to imgur</a></li>
+        </ul>
+      </nav>
+
+    <!-- <button id="reload" class="reload" name="button" type="button">Reload</button>
 
     <button id="newText" class="newText" name="button" type="button">New Thought</button>
 
     <button id="newBackground" class="newBackground" name="button" type="button">New Background</button>
 
-    <canvas id="demoCanvas"></canvas>
-
     <button id="save" class="save" name="save" type="button">Save</button>
 
-    <button id="postToImgur" class="postToImgur" name="postToImgur" type="button">
-        Post to imgur</button>
+    <button id="postToImgur" class="postToImgur" name="postToImgur" type="button">Post to imgur</button> -->
+
+    <canvas id="demoCanvas"></canvas>
 
     <script src="Blob.js"></script>
     <script src="canvas-toBlob.js"></script>
