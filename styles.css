@@ -21,9 +21,13 @@ canvas {
   left: 190px;
   top: 25px;
 }
-
 .save {
   position: fixed;
   right: 25px;
+  top: 25px;
+}
+.postToImgur {
+  position: fixed;
+  right: 100px;
   top: 25px;
 }

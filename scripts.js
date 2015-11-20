@@ -18,7 +18,7 @@ $(document).ready(function(){
   $('#save').click(function(){
     var canvas = document.getElementById("demoCanvas"), ctx = canvas.getContext("2d");
     canvas.toBlob(function(blob) {
-        saveAs(blob, "ILoveShowerThoughtsandErthPorns.png");
+        saveAs(blob, "ILoveShowerThoughtsAndEarthPorns.png");
     });
     return false;
   })
@@ -37,14 +37,16 @@ function getRandomThought(){
       var ran = Math.floor(Math.random()*28);
       currentRandomThought = data.data.children[ran].data.title;
       addTextToCanvas(data.data.children[ran].data.title);
+      // addTextToCanvas(currentRandomThought);
+
   })
 }
+var currentRandomImage = "";
 
 // images for background
 function getRandomImage(){
   $.get("https://www.reddit.com/user/theyangmaster/m/earthporns.json", function(data){
     var validImages = [];
-
     // checks for file endings for valid images
     for(var i = 0; i < data.data.children.length; i++) {
       if(data.data.children[i].data.url.match(/\.(jpg|jpeg|png|gif|bmp|tiff)$/i)) {
@@ -54,6 +56,7 @@ function getRandomImage(){
     // chooses a random valid image
     var ran = Math.floor(Math.random()*validImages.length);
     addBackgroundToCanvas(validImages[ran]);
+    currentRandomImage  = validImages[ran];
   })
 }
 
@@ -70,6 +73,11 @@ function init() {
   window.addEventListener('resize', function(){
     demoCanvas.width = window.innerWidth;
     demoCanvas.height = window.innerHeight;
+
+    // addTextToCanvas(currentRandomThought);
+    randomThought = false;
+    addBackgroundToCanvas(currentRandomImage);
+
     stage.update();
   }, true);
 
@@ -125,3 +133,32 @@ function addTextToCanvas(text){
   stage.update();
 
 }
+
+// imgur
+
+$(function(){
+  $("#postToImgur").click(function(){
+    var imageData = stage.toDataURL(stage);
+    localStorage.setItem("imageBase64", imageData);
+    var cleanImageData = imageData.replace(/.*,/, '');
+    console.log(imageData);
+    console.log(cleanImageData);
+    $.ajax({
+        url: "https://api.imgur.com/3/upload",
+        type: "POST",
+        datatype: "json",
+        data: {image: cleanImageData, type:'base64'},
+        success: function(data){
+          console.log(data);
+        },
+        error: function(data){
+          console.log(data);
+        },
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Authorization", "Client-ID 53e2cde7435ee97");
+        }
+    });
+  });
+
+
+});
