@@ -117,7 +117,7 @@ function addTextToCanvas(text){
   txt.text += text;
 
   txt.font = "75px Roboto Condensed";
-  txt.color = "#FBFFC9"
+  txt.color = "#FBFFC9";
   txt.lineWidth = demoCanvas.width/1.5;
   txt.lineHeight = 75;
   txt.textBaseline = "top";
