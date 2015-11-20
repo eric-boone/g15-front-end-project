@@ -141,18 +141,21 @@ $(function(){
     var imageData = stage.toDataURL(stage);
     localStorage.setItem("imageBase64", imageData);
     var cleanImageData = imageData.replace(/.*,/, '');
-    console.log(imageData);
-    console.log(cleanImageData);
+    // console.log(imageData);
+    // console.log(cleanImageData);
     $.ajax({
         url: "https://api.imgur.com/3/upload",
         type: "POST",
         datatype: "json",
         data: {image: cleanImageData, type:'base64'},
         success: function(data){
-          console.log(data);
+          // console.log(data);
+          var imgLocation = data.data.link;
+          // console.log(imgLocation);
+          window.open(imgLocation);
         },
         error: function(data){
-          console.log(data);
+          // console.log(data);
         },
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Client-ID 53e2cde7435ee97");
