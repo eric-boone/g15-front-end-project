@@ -114,25 +114,166 @@ function addBackgroundToCanvas(url){
 }
 
 // text for canvas with easelJS
-function addTextToCanvas(text){
-  var txt = new createjs.Text("", "", "");
 
-  txt.text += text;
+// for resizing text
+var windowWidth = window.innerWidth;
+console.log(windowWidth);
 
-  txt.font = "75px Roboto Condensed";
-  txt.color = "#FBFFC9"
-  txt.lineWidth = demoCanvas.width/1.5;
-  txt.lineHeight = 75;
-  txt.textBaseline = "top";
-  txt.textAlign = "left";
-  txt.y = stage.canvas.height / 4;
-  txt.x = stage.canvas.width / 5;
-  txt.shadow = new createjs.Shadow("#000",3,3,0);
 
-  stage.addChild(txt);
-  stage.update();
 
+function addTextToCanvas(){
+  if(windowWidth <= 400){
+    //small
+    return (function small(text){
+      var txt = new createjs.Text("", "", "");
+
+      txt.text += text;
+
+      txt.font = "35px Roboto Condensed";
+      txt.color = "#FBFFC9"
+      txt.lineWidth = demoCanvas.width/1.5;
+      txt.lineHeight = 35;
+      txt.textBaseline = "top";
+      txt.textAlign = "left";
+      txt.y = stage.canvas.height / 4;
+      txt.x = stage.canvas.width / 5;
+      txt.shadow = new createjs.Shadow("#000",3,3,0);
+
+      stage.addChild(txt);
+      stage.update();
+
+    });
+    console.log('small');
+  } else if(windowWidth >= 401 && windowWidth <= 800){
+    // medium
+     return (function medium(text){
+      var txt = new createjs.Text("", "", "");
+
+      txt.text += text;
+
+      txt.font = "50px Roboto Condensed";
+      txt.color = "#FBFFC9"
+      txt.lineWidth = demoCanvas.width/1.5;
+      txt.lineHeight = 50;
+      txt.textBaseline = "top";
+      txt.textAlign = "left";
+      txt.y = stage.canvas.height / 4;
+      txt.x = stage.canvas.width / 5;
+      txt.shadow = new createjs.Shadow("#000",3,3,0);
+
+      stage.addChild(txt);
+      stage.update();
+
+    });
+    console.log('medium');
+  } else {
+    // large
+    return (function large(text){
+      var txt = new createjs.Text("", "", "");
+
+      txt.text += text;
+
+      txt.font = "65px Roboto Condensed";
+      txt.color = "#FBFFC9"
+      txt.lineWidth = demoCanvas.width/1.5;
+      txt.lineHeight = 65;
+      txt.textBaseline = "top";
+      txt.textAlign = "left";
+      txt.y = stage.canvas.height / 4;
+      txt.x = stage.canvas.width / 5;
+      txt.shadow = new createjs.Shadow("#000",3,3,0);
+
+      stage.addChild(txt);
+      stage.update();
+
+    });
+    console.log('large');
+  }
 }
+
+// function large(text){
+//   var txt = new createjs.Text("", "", "");
+//
+//   txt.text += text;
+//
+//   txt.font = "65px Roboto Condensed";
+//   txt.color = "#FBFFC9"
+//   txt.lineWidth = demoCanvas.width/1.5;
+//   txt.lineHeight = 65;
+//   txt.textBaseline = "top";
+//   txt.textAlign = "left";
+//   txt.y = stage.canvas.height / 4;
+//   txt.x = stage.canvas.width / 5;
+//   txt.shadow = new createjs.Shadow("#000",3,3,0);
+//
+//   stage.addChild(txt);
+//   stage.update();
+//
+// }
+
+// function medium(text){
+//   var txt = new createjs.Text("", "", "");
+//
+//   txt.text += text;
+//
+//   txt.font = "50px Roboto Condensed";
+//   txt.color = "#FBFFC9"
+//   txt.lineWidth = demoCanvas.width/1.5;
+//   txt.lineHeight = 50;
+//   txt.textBaseline = "top";
+//   txt.textAlign = "left";
+//   txt.y = stage.canvas.height / 4;
+//   txt.x = stage.canvas.width / 5;
+//   txt.shadow = new createjs.Shadow("#000",3,3,0);
+//
+//   stage.addChild(txt);
+//   stage.update();
+//
+// }
+
+
+// function small(text){
+//   var txt = new createjs.Text("", "", "");
+//
+//   txt.text += text;
+//
+//   txt.font = "35px Roboto Condensed";
+//   txt.color = "#FBFFC9"
+//   txt.lineWidth = demoCanvas.width/1.5;
+//   txt.lineHeight = 35;
+//   txt.textBaseline = "top";
+//   txt.textAlign = "left";
+//   txt.y = stage.canvas.height / 4;
+//   txt.x = stage.canvas.width / 5;
+//   txt.shadow = new createjs.Shadow("#000",3,3,0);
+//
+//   stage.addChild(txt);
+//   stage.update();
+//
+// }
+
+
+
+// working
+// function addTextToCanvas(text){
+//   var txt = new createjs.Text("", "", "");
+//
+//   txt.text += text;
+//
+//   txt.font = "75px Roboto Condensed";
+//   txt.color = "#FBFFC9"
+//   txt.lineWidth = demoCanvas.width/1.5;
+//   txt.lineHeight = 75;
+//   txt.textBaseline = "top";
+//   txt.textAlign = "left";
+//   txt.y = stage.canvas.height / 4;
+//   txt.x = stage.canvas.width / 5;
+//   txt.shadow = new createjs.Shadow("#000",3,3,0);
+//
+//   stage.addChild(txt);
+//   stage.update();
+//
+// }
 
 // imgur
 
@@ -162,6 +303,4 @@ $(function(){
         }
     });
   });
-
-
 });
